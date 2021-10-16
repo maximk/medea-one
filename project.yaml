@@ -1,0 +1,104 @@
+project: medea-area-51
+region: us-central1
+
+graph:
+  # omni-broker-poller: {a5: twitch}
+
+vertices:
+  # twitch-train-1:
+  #   service: twitch-train
+  # twitch-train-2:
+  #   service: twitch-train
+  # twitch-ctl-1:
+  #   service: twitch-ctl
+  # twitch-ctl-2:
+  #   service: twitch-ctl
+  # account-unlocker:
+  #   service: account-limits
+
+origins:
+  # omni-broker-poller:
+  #   schedule: '* * * * *'
+  # kranz-filter:
+  #   schedule: 07:21NY
+  #   input: >
+  #     {
+  #       "action": "reset-filter"
+  #     }
+  #   retry-count: 3
+  # twitch-train-1:
+  #   schedule: 07:47NY
+  #   input: >
+  #     {
+  #       "action": "train-pilot",
+  #       "pilot": "aten-fx"
+  #     }
+  #   retry-count: 3
+  # twitch-train-2:
+  #   schedule: 07:53NY
+  #   input: >
+  #     {
+  #       "action": "train-pilot",
+  #       "pilot": "coinflip-1"
+  #     }
+  #   retry-count: 3
+  # twitch-ctl-1:
+  #   schedule: 09:05NY
+  #   input: >
+  #     {
+  #       "action": "schedule-pilot",
+  #       "pilot": "aten-fx",
+  #       "cadence": 23400
+  #     }
+  # twitch-ctl-2:
+  #   schedule: 08:35NY
+  #   input: >
+  #     {
+  #       "action": "schedule-pilot",
+  #       "pilot": "coinflip-1",
+  #       "cadence": 23400
+  #     }
+  # account-snapshot:
+  #   schedule: 16:40NY
+  #   retry-count: 3
+  # account-limits:
+  #   schedule: '*/5 13-21 * * 1-5'
+  #   input: >
+  #     {
+  #       "action": "check-limits"
+  #     }
+  # account-unlocker:
+  #   schedule: 05:35NY
+  #   retry-count: 3
+  #   input: >
+  #     {
+  #       "action": "unlock-accounts"
+  #     }
+
+services:
+  training-ground:
+    memory: 2Gi
+    timeout: 900s
+  # kranz-filter:
+  # pilot-aten-1:
+  #   image: pilot-aten-generic
+  # pilot-aten-2:
+  #   image: pilot-aten-generic
+  # pilot-aten-fx:
+  #   image: pilot-aten-generic
+  #   env-vars:
+  #     HEDGE_SYMBOL: IWM
+  #     HEDGE_RATIO: 0.5
+  # pilot-petah-1:
+  #   image: pilot-petah-generic
+  # pilot-coinflip-1:
+  #   image: pilot-coinflip-generic
+  # pilot-closer:
+  # bt-reports:
+  # perf-reports:
+  #   memory: 2Gi
+  # status-reports:
+  # twitch:
+  #   memory: 2Gi
+  #   timeout: 900s
+  # twitch-train:

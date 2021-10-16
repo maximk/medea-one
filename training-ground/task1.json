@@ -1,0 +1,6 @@
+{
+    "train": {
+        "problem": "next-F",
+        "solver": "FF"
+    }
+}

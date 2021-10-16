@@ -1,0 +1,9 @@
+name = "TrainingGround"
+uuid = "fc82eafb-b06a-4402-bb45-46245637bc91"
+authors = ["Maxim Kharchenko <maxim.kharchenko@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+SimpleOne = "a5cf4e30-b29b-4472-8449-c25267738de3"
+TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
