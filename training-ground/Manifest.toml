@@ -87,9 +87,9 @@ version = "1.11.6"
 
 [[ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
-git-tree-sha1 = "2f294fae04aa5069a67964a3366e151e09ea7c09"
+git-tree-sha1 = "8d954297bc51cc64f15937c2093799c3617b73e4"
 uuid = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
-version = "1.9.0"
+version = "1.10.0"
 
 [[CodeTracking]]
 deps = ["InteractiveUtils", "UUIDs"]
@@ -329,9 +329,9 @@ uuid = "f6369f11-7733-5829-9624-2563aa707210"
 version = "0.10.21"
 
 [[Functors]]
-git-tree-sha1 = "ee53f5bf9c098161629655b55e1462810f878f4f"
+git-tree-sha1 = "e4768c3b7f597d5a352afa09874d16e3c3f6ead2"
 uuid = "d9f16b24-f501-4c13-a1f2-28368ffc5196"
-version = "0.2.6"
+version = "0.2.7"
 
 [[Future]]
 deps = ["Random"]
@@ -830,9 +830,9 @@ version = "1.2.2"
 
 [[PrettyTables]]
 deps = ["Crayons", "Formatting", "Markdown", "Reexport", "Tables"]
-git-tree-sha1 = "69fd065725ee69950f3f58eceb6d144ce32d627d"
+git-tree-sha1 = "d940010be611ee9d67064fe559edbb305f8cc0eb"
 uuid = "08abe8d2-0d0c-5749-adfa-8a2ac140af0d"
-version = "1.2.2"
+version = "1.2.3"
 
 [[Printf]]
 deps = ["Unicode"]
@@ -966,12 +966,12 @@ deps = ["Distributed", "Mmap", "Random", "Serialization"]
 uuid = "1a1011a3-84de-559e-8e89-a11a2f7dc383"
 
 [[SimpleOne]]
-deps = ["CUDA", "Colors", "DataFrames", "Dates", "Diana", "Distributions", "FileIO", "Flux", "GPUArrays", "HypothesisTests", "ImageIO", "ImageMagick", "Images", "IterTools", "LinearAlgebra", "Logging", "MultivariateStats", "Pandas", "PrettyTables", "Printf", "PyCall", "Query", "Random", "RecipesBase", "Revise", "Statistics", "StatsBase", "Test"]
-git-tree-sha1 = "fb6bcd169218a65c68ab35d4ba48215dd1fc8392"
+deps = ["CUDA", "Colors", "DataFrames", "Dates", "Diana", "Distributions", "FileIO", "Flux", "GPUArrays", "HTTP", "HypothesisTests", "ImageIO", "ImageMagick", "Images", "IterTools", "LinearAlgebra", "Logging", "MultivariateStats", "Pandas", "PrettyTables", "Printf", "PyCall", "Query", "Random", "RecipesBase", "Revise", "Statistics", "StatsBase", "Test"]
+git-tree-sha1 = "50c1100837662f2722e777c6720f3d82d3684d75"
 repo-rev = "main"
 repo-url = "https://github.com/PurTech/SimpleOne.git"
 uuid = "a5cf4e30-b29b-4472-8449-c25267738de3"
-version = "0.1.0"
+version = "0.1.1"
 
 [[SimpleTraits]]
 deps = ["InteractiveUtils", "MacroTools"]
@@ -994,9 +994,9 @@ uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
 [[SpecialFunctions]]
 deps = ["ChainRulesCore", "IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
-git-tree-sha1 = "793793f1df98e3d7d554b65a107e9c9a6399a6ed"
+git-tree-sha1 = "2d57e14cd614083f132b6224874296287bfa3979"
 uuid = "276daf66-3868-5448-9aa4-cd146d93841b"
-version = "1.7.0"
+version = "1.8.0"
 
 [[StackViews]]
 deps = ["OffsetArrays"]
@@ -1027,9 +1027,9 @@ version = "1.0.0"
 
 [[StatsBase]]
 deps = ["DataAPI", "DataStructures", "LinearAlgebra", "LogExpFunctions", "Missings", "Printf", "Random", "SortingAlgorithms", "SparseArrays", "Statistics", "StatsAPI"]
-git-tree-sha1 = "65fb73045d0e9aaa39ea9a29a5e7506d9ef6511f"
+git-tree-sha1 = "eb35dcc66558b2dda84079b9a1be17557d32091a"
 uuid = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
-version = "0.33.11"
+version = "0.33.12"
 
 [[StatsFuns]]
 deps = ["ChainRulesCore", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
@@ -1159,9 +1159,9 @@ version = "1.5.0+0"
 
 [[Zygote]]
 deps = ["AbstractFFTs", "ChainRules", "ChainRulesCore", "DiffRules", "Distributed", "FillArrays", "ForwardDiff", "IRTools", "InteractiveUtils", "LinearAlgebra", "MacroTools", "NaNMath", "Random", "Requires", "SpecialFunctions", "Statistics", "ZygoteRules"]
-git-tree-sha1 = "a88cafd339a0099e030286a3a6d0b3c32d373dcf"
+git-tree-sha1 = "0fc9959bcabc4668c403810b4e851f6b8962eac9"
 uuid = "e88e6eb3-aa80-5325-afca-941959d7151f"
-version = "0.6.28"
+version = "0.6.29"
 
 [[ZygoteRules]]
 deps = ["MacroTools"]

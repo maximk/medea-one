@@ -1,6 +1,6 @@
 {
-    "train": {
-        "problem": "next-F",
-        "solver": "FF"
+    "train-model": {
+        "problem": "sec",
+        "solver": "LS"
     }
 }

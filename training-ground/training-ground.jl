@@ -33,12 +33,20 @@ while true
     
     outputs = Vector{UInt8}[]
 
-    task = JSON.parse(IOBuffer(msg))
-    solver_name = task["train"]["solver"]
-    prob_name = task["train"]["problem"]
-
     run_result = redirect_stdout(stderr) do
-        TrainingGround.run(prob_name, solver_name)
+        req = JSON.parse(IOBuffer(msg))
+        if haskey(req, "train-model")
+            args = req["train-model"]
+            TrainingGround.train_model(args["problem"], args["solver"])
+        elseif haskey(req, "resolve-solver-list")
+            args = req["resolve-solver-list"]
+            TrainingGround.resolve_solver_list(args)
+        elseif haskey(req, "resolve-problem-list")
+            args = req["resolve-problem-list"]
+            TrainingGround.resolve_problem_list(args)
+        else
+            Dict(:error => "action not supported; use 'train-model', 'resolve-solver-list', or 'resolve-problem-list'")
+        end
     end
 
     output = Vector{UInt8}(JSON.json(run_result))

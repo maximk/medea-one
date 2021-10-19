@@ -1,14 +1,20 @@
 FROM gcr.io/medea-common-262502/gg AS gg
-FROM julia:1.6.3
+FROM ubuntu:20.04
 
-RUN apt-get -y update && apt-get -y install ssh \
+RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -yq install wget \
     python3 \
-    python3-pip
+    python3-pip \
+    ssh
+
+WORKDIR /opt
+RUN wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.3-linux-x86_64.tar.gz
+RUN tar xzf julia-1.6.3-linux-x86_64.tar.gz
+RUN ln -s /opt/julia-1.6.3/bin/julia /usr/local/bin/julia
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python
 RUN ln -sf /usr/bin/pip3 /usr/bin/pip
 
-RUN pip install pandas google-cloud-bigquery
+RUN pip install pyarrow pandas google-cloud-bigquery
 
 RUN mkdir /app
 WORKDIR /app
