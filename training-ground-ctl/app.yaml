@@ -1,0 +1,8 @@
+input:
+  separation: chunked
+  multiple: false
+  sentinel: $$$$
+output:
+  separation: chunked
+  multiple: true
+  sentinel: $$$$

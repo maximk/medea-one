@@ -25,3 +25,4 @@ services:
     memory: 4Gi
     timeout: 900s
   training-ground-ctl:
+  training-ground-ui:
