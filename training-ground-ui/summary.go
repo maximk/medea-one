@@ -10,41 +10,23 @@ import (
 	"google.golang.org/api/iterator"
 )
 
+type SolverSummary struct {
+	Solver       string `json:"solver"`
+	NumErrors    int    `json:"num_errors"`
+	NumSolved    int    `json:"num_solved"`
+	NumNotSolved int    `json:"num_unsolved"`
+}
+
 type RunSummary struct {
-	Problem      string `json:"p"`
-	Solver       string `json:"s"`
-	NumErrors    int    `json:"ne"`
-	NumSolved    int    `json:"ns"`
-	NumNotSolved int    `json:"nu"`
+	Problem          string          `json:"problem"`
+	NumKnownSolved   int             `json:"num_known_solved"`
+	NumKnownUnsolved int             `json:"num_known_unsolved"`
+	Results          []SolverSummary `json:"results"`
 }
 
 func trainingSummary(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
-	q := bq.Connect(ctx).Query(`
-declare AllSolvers array<string>;
-declare AllProblems array<string>;
-
-set AllSolvers = array(select Solver from M1.TrainingReports group by Solver);
-set AllProblems = array(select Problem from M1.TrainingReports group by Problem);
-
-with ProblemSolvers as (
-	select Problem, Solver from unnest(AllProblems) as Problem, unnest(AllSolvers) as Solver
-),
-
-RecentReports as (
-	select *
-	from M1.TrainingReports
-	where true
-	qualify row_number() over (partition by Problem, Solver order by Started desc) <= 16
-)
-
-select Problem, Solver,
-		sum(if(ErrorMsg is not null, 1, 0)) as NumErrors,
-		sum(if(Confirm, 1, 0)) as NumSolved,
-		sum(if(not Confirm, 1, 0)) as NumNotSolved,
-	from ProblemSolvers left join RecentReports using (Problem, Solver)
-	group by Problem, Solver
-`)
+	q := bq.Connect(ctx).Query("call M1.GetTrainingSummary()")
 
 	it, err := q.Read(ctx)
 	if err != nil {

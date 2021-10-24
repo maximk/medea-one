@@ -1,8 +1,19 @@
 import { useState, useEffect } from 'react'
-import Table from 'react-bootstrap/Table'
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+import KnownResult from './KnownResult';
+import SolverResult from './SolverResult';
+
 import config from '../config'
 
-function SummaryTable() {
+export default function SummaryTable() {
 
     const [data, setData] = useState({ summary: [], isFetching: false })
 
@@ -22,35 +33,45 @@ function SummaryTable() {
         fetchSummary();
     }, [])
 
-    const number = { textAlign: "right" }
+    if (data.summary.length == 0) {
+        return <div>Loading...</div>
+    }
 
-    return (<Table striped hover>
-        <thead>
-            <tr>
-                <th>Problem</th>
-                <th>Solver</th>
-                <th style={number}>Errors</th>
-                <th style={number}>Solved</th>
-                <th style={number}>Unsolved</th>
-            </tr>
-        </thead>
-        <tbody>
-            {
-                data.summary.map((o, index) => {
-                    const { p, s, ne, ns, nu } = o
-                    return (
-                        <tr key={index}>
-                            <td>{p}</td>
-                            <td>{s}</td>
-                            <td style={number}>{ne}</td>
-                            <td style={number}>{ns}</td>
-                            <td style={number}>{nu}</td>
-                        </tr>
-                    )
-                })
-            }
-        </tbody>
-    </Table>)
+    // Results for each problem guaranteed to include all solvers
+    const allsolvers = data.summary[0].results.map(({ solver }) => solver).sort()
+
+    // Results cannot be sorted in BigQuery (easily)
+    for (let i = 0; i < data.summary.length; i++)
+        data.summary[i].results.sort((x, y) => (x.solver > y.solver) ? 1 : -1)
+
+    const headers = ["Problem", "Known"].concat(allsolvers)
+    return (
+        <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        {headers.map((h) => <TableCell>{h}</TableCell>)}
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {data.summary.map((x) =>
+                        <TableRow>
+                            <TableCell>{x.problem}</TableCell>
+                            <TableCell>
+                                <KnownResult solved={x.num_known_solved} unsolved={x.num_known_unsolved} />
+                            </TableCell>
+                            {x.results.map((r) =>
+                                <TableCell>
+                                    <SolverResult
+                                        errors={r.num_errors}
+                                        solved={r.num_solved}
+                                        unsolved={r.num_unsolved} />
+                                </TableCell>
+                            )}
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    )
 }
-
-export default SummaryTable

@@ -1,24 +1,19 @@
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import styles from './App.module.css'
 
-import { Container, Row, Col } from 'react-bootstrap'
+import Grid from '@mui/material/Grid'
 
 import SummaryTable from "./components/SummaryTable"
 
 function App() {
     return (
-        <div className="App">
-            <Container>
-                <Row>
-                    <Col></Col>
-                    <Col xs={8}>
-                        <h3>Training Summary</h3>
-                        <SummaryTable />
-                    </Col>
-                    <Col></Col>
-                </Row>
-            </Container>
-        </div>
+        <Grid className={styles.App} container spacing={2}>
+            <Grid item xs={1} />
+            <Grid item xs={10}>
+                <h3>Training Summary</h3>
+                <SummaryTable />
+            </Grid>
+            <Grid item xs={1} />
+        </Grid>
     );
 }
 

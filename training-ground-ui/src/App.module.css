@@ -1,0 +1,16 @@
+.App {
+    margin: 1rem;
+    font-family: Arial, Arial, Helvetica, sans-serif;
+}
+
+.ok {
+    color:green;
+}
+
+.fail {
+    color:red;
+}
+
+.unstable {
+    color: gray;
+}
