@@ -77,6 +77,7 @@ func ensureOutputTablesExists(ctx context.Context) error {
 			panic(err)
 		}
 
+		log.Printf("Creating %s...", reportsTableName)
 		err = t.Create(ctx, &bigquery.TableMetadata{Schema: schema})
 		if err != nil {
 			return nil
@@ -90,6 +91,7 @@ func ensureOutputTablesExists(ctx context.Context) error {
 			panic(err)
 		}
 
+		log.Printf("Creating %s...", runsTableName)
 		err = t.Create(ctx, &bigquery.TableMetadata{Schema: schema})
 		if err != nil {
 			return nil
@@ -100,12 +102,16 @@ func ensureOutputTablesExists(ctx context.Context) error {
 }
 
 func recordSuccess(ctx context.Context, result *Success) error {
-	err := recordSampleRuns(ctx, result)
-	if err != nil {
-		return err
-	}
-
 	log.Printf("OK: %#v", result)
+
+	if len(result.SampleRuns) > 0 {
+		err := recordSampleRuns(ctx, result)
+		if err != nil {
+			return err
+		}
+
+		log.Printf("%d sample runs added", len(result.SampleRuns))
+	}
 
 	started, err := time.Parse(timeLayout, result.Started)
 	if err != nil {
@@ -163,8 +169,12 @@ func recordSampleRuns(ctx context.Context, result *Success) error {
 		runs = append(runs, run)
 	}
 
+	// XXX Put() retries indefinitely
+	ctx1, cancel := context.WithTimeout(ctx, 10*time.Second)
+	defer cancel()
+
 	t := bq.Connect(ctx).Dataset("M1").Table(runsTableName)
-	return t.Inserter().Put(ctx, runs)
+	return t.Inserter().Put(ctx1, runs)
 }
 
 func recordFailure(ctx context.Context, result *Failure) error {

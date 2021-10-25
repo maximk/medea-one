@@ -57,10 +57,15 @@ func submitTasks(ctx context.Context, spec *SubmitTasks) error {
 		}
 	}
 
+	log.Printf("Solvers: %v", solvers)
+	log.Printf("Problems: %v", problems)
+
 	err := ensureOutputTablesExists(ctx)
 	if err != nil {
 		return fmt.Errorf("cannot create the output table: %s", err)
 	}
+
+	log.Printf("Output tables OK")
 
 	count := 0
 	for _, prob := range problems {
