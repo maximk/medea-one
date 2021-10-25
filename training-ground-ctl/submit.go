@@ -57,7 +57,7 @@ func submitTasks(ctx context.Context, spec *SubmitTasks) error {
 		}
 	}
 
-	err := ensureOutputTableExists(ctx)
+	err := ensureOutputTablesExists(ctx)
 	if err != nil {
 		return fmt.Errorf("cannot create the output table: %s", err)
 	}
