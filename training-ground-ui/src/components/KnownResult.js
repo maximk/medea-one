@@ -9,7 +9,7 @@ export default (props) => {
     if (ok)
         s = "OK"
     if (unstable)
-        s = "unstable"
+        s = "unstable (" + props.solved + " / " + props.unsolved + ")"
     if (unknown)
         s = "unknown"
 
