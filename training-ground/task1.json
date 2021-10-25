@@ -1,6 +1,6 @@
 {
     "train-model": {
-        "problem": "sec",
-        "solver": "LS"
+        "problem": "fizzbuzz",
+        "solver": "FF"
     }
 }

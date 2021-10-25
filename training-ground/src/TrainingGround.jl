@@ -37,6 +37,7 @@ function train_model(prob_name, solver_name)
                 total_prices = train_result.total_prices,
                 p_value = test_result.p_value,
                 confirm = test_result.confirm,
+                sample_runs = test_result.sample_runs,
             ),
         )
     catch e
