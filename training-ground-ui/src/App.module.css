@@ -3,6 +3,10 @@
     font-family: Arial, Arial, Helvetica, sans-serif;
 }
 
+.runlink {
+    text-decoration: none;
+}
+
 .ok {
     color:green;
 }

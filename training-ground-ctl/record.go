@@ -102,7 +102,7 @@ func ensureOutputTablesExists(ctx context.Context) error {
 }
 
 func recordSuccess(ctx context.Context, result *Success) error {
-	log.Printf("OK: %#v", result)
+	log.Printf("OK: problem=%s solver=%s", result.Problem, result.Solver)
 
 	if len(result.SampleRuns) > 0 {
 		err := recordSampleRuns(ctx, result)
@@ -169,16 +169,12 @@ func recordSampleRuns(ctx context.Context, result *Success) error {
 		runs = append(runs, run)
 	}
 
-	// XXX Put() retries indefinitely
-	ctx1, cancel := context.WithTimeout(ctx, 10*time.Second)
-	defer cancel()
-
 	t := bq.Connect(ctx).Dataset("M1").Table(runsTableName)
-	return t.Inserter().Put(ctx1, runs)
+	return t.Inserter().Put(ctx, runs)
 }
 
 func recordFailure(ctx context.Context, result *Failure) error {
-	log.Printf("FAIL: %#v", result)
+	log.Printf("FAIL: problem=%s solver=%s", result.Problem, result.Solver)
 
 	started, err := time.Parse(timeLayout, result.Started)
 	if err != nil {

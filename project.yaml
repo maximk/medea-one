@@ -4,7 +4,7 @@ regions:
   scheduler: us-east1
 
 graph:
-  training-ground: {a3: training-ground-ctl}
+  training-ground: {a1: training-ground-ctl}
 
 origins:
   training-ground:

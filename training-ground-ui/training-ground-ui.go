@@ -9,6 +9,7 @@ func main() {
 	log.SetFlags(0)
 
 	http.HandleFunc("/1/api/training-summary", trainingSummary)
+	http.HandleFunc("/1/api/sample-runs", sampleRuns)
 	http.Handle("/", http.FileServer(http.Dir("build")))
 
 	http.ListenAndServe(":8080", logRequest(http.DefaultServeMux))

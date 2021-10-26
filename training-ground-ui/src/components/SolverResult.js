@@ -1,4 +1,6 @@
-import styles from "../App.module.css"
+import styles from '../App.module.css'
+
+import { Link } from 'react-router-dom'
 
 export default (props) => {
     const ok = props.solved > 0 && props.unsolved == 0
@@ -6,15 +8,15 @@ export default (props) => {
     const unstable = props.solved > 0 && props.unsolved > 0
     const unknown = props.solved == 0 && props.unsolved == 0
 
-    var s = "OK"
+    var s = 'OK'
     if (fail)
-        s = "fail"
+        s = 'fail'
     if (unstable)
-        s = "unstable (" + props.solved + " / " + props.unsolved + ")"
+        s = 'unstable (' + props.solved + ' / ' + props.unsolved + ')'
     if (unknown)
-        s = "unknown"
+        s = 'unknown'
 
-    var cs = []
+    var cs = [styles.runlink]
     if (ok)
         cs.push(styles.ok)
     if (fail)
@@ -22,5 +24,7 @@ export default (props) => {
     if (unstable)
         cs.push(styles.unstable)
 
-    return <div className={cs.join(" ")}>{s}</ div >
+    return <Link
+        className={cs.join(' ')}
+        to={'/problems/' + props.problem + '/solvers/' + props.solver}>{s}</Link>
 }

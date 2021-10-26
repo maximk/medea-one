@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,55 +14,54 @@ import SolverResult from './SolverResult';
 import config from '../config'
 
 export default function SummaryTable() {
-
-    const [data, setData] = useState({ summary: [], isFetching: false })
+    const [summary, setSummary] = useState()
 
     useEffect(() => {
         const fetchSummary = async () => {
             try {
-                setData({ summary: data.summary, isFetching: true })
-                const response = await fetch(config.apiUrl + "training-summary")
+                const response = await fetch(config.apiUrl + 'training-summary')
                 const summary = await response.json()
-                setData({ summary: summary, isFetching: false })
+                setSummary(summary)
             } catch (e) {
                 console.log(e)
-                setData({ summary: data.summary, isFetching: false })
             }
         }
 
-        fetchSummary();
+        fetchSummary()
     }, [])
 
-    if (data.summary.length == 0) {
+    if (!summary) {
         return <div>Loading...</div>
     }
 
     // Results for each problem guaranteed to include all solvers
-    const allsolvers = data.summary[0].results.map(({ solver }) => solver).sort()
+    const allsolvers = summary[0].results.map(({ solver }) => solver).sort()
 
     // Results cannot be sorted in BigQuery (easily)
-    for (let i = 0; i < data.summary.length; i++)
-        data.summary[i].results.sort((x, y) => (x.solver > y.solver) ? 1 : -1)
+    for (let i = 0; i < summary.length; i++)
+        summary[i].results.sort((x, y) => (x.solver > y.solver) ? 1 : -1)
 
-    const headers = ["Problem", "Known"].concat(allsolvers)
+    const headers = ['Problem', 'Known'].concat(allsolvers)
     return (
         <TableContainer component={Paper}>
             <Table>
                 <TableHead>
                     <TableRow>
-                        {headers.map((h) => <TableCell>{h}</TableCell>)}
+                        {headers.map((h, i) => <TableCell key={i}>{h}</TableCell>)}
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.summary.map((x) =>
-                        <TableRow>
+                    {summary.map((x, i) =>
+                        <TableRow key={i}>
                             <TableCell>{x.problem}</TableCell>
                             <TableCell>
                                 <KnownResult solved={x.num_known_solved} unsolved={x.num_known_unsolved} />
                             </TableCell>
-                            {x.results.map((r) =>
-                                <TableCell>
+                            {x.results.map((r, i) =>
+                                <TableCell key={i}>
                                     <SolverResult
+                                        problem={x.problem}
+                                        solver={r.solver}
                                         errors={r.num_errors}
                                         solved={r.num_solved}
                                         unsolved={r.num_unsolved} />

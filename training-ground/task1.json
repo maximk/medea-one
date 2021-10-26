@@ -1,6 +1,6 @@
 {
     "train-model": {
-        "problem": "eod-tsla",
+        "problem": "chatter",
         "solver": "FF"
     }
 }
