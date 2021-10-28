@@ -1,32 +1,46 @@
-import styles from './App.module.css'
+import { useState } from 'react'
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
-import SummaryTable from './components/SummaryTable'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+import TrainingSummary from './components/TrainingSummary'
 import SampleRuns from './components/SampleRuns'
+import Sidebar from './components/Sidebar'
 
 function App() {
+    const [allProblems, setAllProblems] = useState(['next', 'next-F', 'fizzbuzz'])
+    const [allSolvers, setAllSolvers] = useState(['SS', 'FF', 'LS'])
+
     return (
         <Router>
-            <Grid className={styles.App} container spacing={2}>
-                <Grid item xs={2}></Grid>
-                <Grid item xs={8}>
+            <Box sx={{ display: 'flex' }}>
+                <Sidebar />
+                <Box component='main'>
+
+                    {/*TODO add a dashboard here (total number of records in training tables, etc) */}
+
                     <Switch>
                         <Route path='/summary'>
-                            <h3>Training Summary</h3>
-                            <SummaryTable />
+                            <Typography variant="h3" marginTop={4} marginBottom={2}>Training Summary</Typography>
+                            <TrainingSummary
+                                setAllProblems={setAllProblems}
+                                setAllSolvers={setAllSolvers}
+                            />
                         </Route>
-                        <Route path='/problems/:problem/solvers/:solver'>
-                            <h3>Training Runs</h3>
-                            <SampleRuns />
+                        <Route path='/runs'>
+                            <Typography variant="h3" marginTop={4} marginBottom={2}>Sample Runs</Typography>
+                            <SampleRuns
+                                allProblems={allProblems}
+                                allSolvers={allSolvers}
+                            />
                         </Route>
                     </Switch>
-                </Grid>
-                <Grid item xs={2}></Grid>
-            </Grid>
-        </Router >
+                </Box>
+            </Box>
+        </Router>
     )
 }
 
-export default App;
+export default App

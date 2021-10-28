@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,20 +8,30 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import memoize from '../cache'
+
 import KnownResult from './KnownResult';
 import SolverResult from './SolverResult';
 
 import config from '../config'
+import { Box } from '@mui/material';
+import { ResponsiveContainer } from 'recharts';
 
-export default function SummaryTable() {
+export default function TrainingSummary({ setAllProblems, setAllSolvers }) {
     const [summary, setSummary] = useState()
 
     useEffect(() => {
         const fetchSummary = async () => {
             try {
-                const response = await fetch(config.apiUrl + 'training-summary')
-                const summary = await response.json()
-                setSummary(summary)
+                let url = config.apiUrl + 'training-summary'
+                if (memoize(url) === undefined) {
+                    const response = await fetch(url)
+                    const summary = await response.json()
+                    memoize(url, summary)
+                    setSummary(summary)
+                } else {
+                    setSummary(memoize(url))
+                }
             } catch (e) {
                 console.log(e)
             }
@@ -30,18 +40,28 @@ export default function SummaryTable() {
         fetchSummary()
     }, [])
 
+    useEffect(() => {
+        if (summary) {
+            let allProblems = summary.map(({ problem }) => problem).sort()
+            setAllProblems(allProblems)
+
+            let allSolvers = summary[0].results.map(({ solver }) => solver).sort()
+            setAllSolvers(allSolvers)
+        }
+    }, [summary])
+
     if (!summary) {
         return <div>Loading...</div>
     }
 
     // Results for each problem guaranteed to include all solvers
-    const allsolvers = summary[0].results.map(({ solver }) => solver).sort()
+    const allSolvers = summary[0].results.map(({ solver }) => solver).sort()
 
     // Results cannot be sorted in BigQuery (easily)
     for (let i = 0; i < summary.length; i++)
         summary[i].results.sort((x, y) => (x.solver > y.solver) ? 1 : -1)
 
-    const headers = ['Problem', 'Known'].concat(allsolvers)
+    const headers = ['Problem', 'Known'].concat(allSolvers)
     return (
         <TableContainer component={Paper}>
             <Table>

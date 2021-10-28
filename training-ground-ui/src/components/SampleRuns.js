@@ -1,49 +1,44 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { MenuItem, Box, TextField } from "@mui/material";
 
-import config from '../config'
+import RunPicker from "./RunPicker";
 
-export default () => {
-    const { problem, solver } = useParams()
+import { useLocation, useHistory } from 'react-router-dom'
 
-    const [sampleRuns, setSampleRuns] = useState()
+export default function SampleRuns({ allProblems, allSolvers }) {
+    const query = new URLSearchParams(useLocation().search)
+    const problem = query.get('problem') || ''
+    const solver = query.get('solver') || ''
 
-    useEffect(() => {
-        const fetchRun = async () => {
-            try {
-                var url = new URL(config.apiUrl + 'sample-runs')
-                url.searchParams.append('problem', problem)
-                url.searchParams.append('solver', solver)
-                const response = await fetch(url)
-                const sampleRuns = await response.json()
-                setSampleRuns(sampleRuns)
-            } catch (e) {
-                console.log(e)
-            }
-        }
-
-        fetchRun()
-    }, [])
-
-    if (!sampleRuns) {
-        return <div>Loading...</div>
-    }
-
-    console.log(sampleRuns)
-
-    // { price, signal, action, pnl }
-
-    // show a range of buttons to choose the run (internal state, not url)
-
-    // show price chart
-    // add actions to price chart
-
-    // show a summary table for actions
-    // show total P/L
+    const history = useHistory()
 
     return <div>
-        Problem: {problem}
-        <hr />
-        Solver: {solver}
+        <Box component='form' noValidate autoComplete='off' sx={{ marginTop: 4, marginBottom: 2 }}>
+            <TextField
+                select
+                label='Problem'
+                value={problem}
+                sx={{ width: '16ch', marginRight: 4 }}
+                onChange={(e) => history.push('/runs?problem=' + e.target.value + '&solver=' + solver)}
+            >
+                {allProblems.map((p) => (
+                    <MenuItem value={p} key={p}>{p}</MenuItem>
+                ))}
+            </TextField>
+            <TextField
+                select
+                label='Solver'
+                value={solver}
+                sx={{ width: '12ch' }}
+                onChange={(e) => history.push('/runs?problem=' + problem + '&solver=' + e.target.value)}
+            >
+                {allSolvers.map((s) => (
+                    <MenuItem value={s} key={s}>{s}</MenuItem>
+                ))}
+            </TextField>
+        </Box>
+        {(problem !== '' && solver !== '')
+            ? <RunPicker problem={problem} solver={solver} />
+            : <div />
+        }
     </div>
 }

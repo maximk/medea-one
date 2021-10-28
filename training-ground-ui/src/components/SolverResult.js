@@ -2,11 +2,11 @@ import styles from '../App.module.css'
 
 import { Link } from 'react-router-dom'
 
-export default (props) => {
-    const ok = props.solved > 0 && props.unsolved == 0
-    const fail = props.solved == 0 && props.unsolved > 0
+export default function SolverResult(props) {
+    const ok = props.solved > 0 && props.unsolved === 0
+    const fail = props.solved === 0 && props.unsolved > 0
     const unstable = props.solved > 0 && props.unsolved > 0
-    const unknown = props.solved == 0 && props.unsolved == 0
+    const unknown = props.solved === 0 && props.unsolved === 0
 
     var s = 'OK'
     if (fail)
@@ -26,5 +26,5 @@ export default (props) => {
 
     return <Link
         className={cs.join(' ')}
-        to={'/problems/' + props.problem + '/solvers/' + props.solver}>{s}</Link>
+        to={'/runs?problem=' + props.problem + '&solver=' + props.solver}>{s}</Link>
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="logo1.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showborder="false"
+     inkscape:zoom="1"
+     inkscape:cx="34"
+     inkscape:cy="512"
+     inkscape:window-width="1916"
+     inkscape:window-height="1041"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path4046"
+       style="fill:#ef9a9a;stroke:none;stroke-width:0.264584px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -45.49927,50.843912 c 0.704849,-4.8e-5 1.535468,0.31099 2.480416,1.066939 l 84.340938,75.687859 -43.3811903,-0.29629 v 59.00816 H -44.915525 c -1.484892,-0.008 -3.356309,-1.26029 -3.361412,-3.95947 l 0.02989,-127.647933 c -0.03343,-1.82747 0.946504,-3.859137 2.747782,-3.859265 z"
+       sodipodi:nodetypes="scccccccs"
+       inkscape:export-filename="/home/mk/pt/medea-one/training-ground-ui/public/logo512.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       id="path857"
+       style="fill:#d50000;stroke:none;stroke-width:0.264584px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 84.412068,50.843912 c -0.704848,-4.8e-5 -1.535472,0.31099 -2.480421,1.066939 L -2.4092876,127.59871 40.971902,127.30242 v 59.00816 h 42.856419 c 1.484894,-0.008 3.35631,-1.26029 3.361408,-3.95947 L 87.159863,54.703177 c 0.03344,-1.82747 -0.946499,-3.859137 -2.747782,-3.859265 z"
+       sodipodi:nodetypes="scccccccs"
+       inkscape:export-filename="/home/mk/pt/medea-one/training-ground-ui/public/logo512.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       id="path2901"
+       style="fill:#ffcdd2;stroke:#000000;stroke-width:0.264583"
+       cx="89.264511"
+       cy="271.05219"
+       r="0.034967121" />
+  </g>
+</svg>
