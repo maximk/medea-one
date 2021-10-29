@@ -52,7 +52,7 @@ func trainingSummary(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var xs []RunSummary
+	xs := []RunSummary{}
 	for {
 		var x RunSummary
 		err := it.Next(&x)
@@ -106,7 +106,7 @@ func sampleRuns(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var xs []SampleRun
+	xs := []SampleRun{}
 	for {
 		var x SampleRun
 		err := it.Next(&x)

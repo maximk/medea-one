@@ -23,6 +23,8 @@ export default function SolverResult(props) {
         cs.push(styles.fail)
     if (unstable)
         cs.push(styles.unstable)
+    if (unknown)
+        cs.push(styles.unknown)
 
     return <Link
         className={cs.join(' ')}

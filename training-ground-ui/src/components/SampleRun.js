@@ -27,11 +27,17 @@ export default function SampleRun({ data }) {
         total_pnl += pnl
     })
 
+    var minPrice = data.details[0].price
+    data.details.forEach(({ price }) => {
+        if (price < minPrice)
+            minPrice = price
+    })
+
     return <Box>
         <ResponsiveContainer width='100%' aspect={2.0 / 1.0}>
             <LineChart data={data.details}>
                 <XAxis tick={false} />
-                <YAxis domain={['dataMin - 10', 'dataMax']} tickFormatter={f} />
+                <YAxis domain={[minPrice * 0.8, 'dataMax']} tickFormatter={f} />
                 <Line type="monotone" dataKey="price" stroke="#8884d8" dot={<ActionDot />} />
             </LineChart>
         </ResponsiveContainer>
@@ -42,35 +48,40 @@ export default function SampleRun({ data }) {
                 <TableHead>
                     <TableRow>
                         <TableCell>Parameter</TableCell>
-                        <TableCell>Value</TableCell>
-                        <TableCell>%</TableCell>
+                        <TableCell align="right">Value</TableCell>
+                        <TableCell align="right">%</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     <TableRow>
+                        <TableCell>Started</TableCell>
+                        <TableCell align="right">{data.started}</TableCell>
+                        <TableCell align="right"></TableCell>
+                    </TableRow>
+                    <TableRow>
                         <TableCell>Auctions</TableCell>
-                        <TableCell>{data.details.length}</TableCell>
-                        <TableCell></TableCell>
+                        <TableCell align="right">{data.details.length}</TableCell>
+                        <TableCell align="right"></TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Buy actions</TableCell>
-                        <TableCell>{buy_count}</TableCell>
-                        <TableCell>{f(buy_count / data.details.length * 100) + '%'}</TableCell>
+                        <TableCell align="right">{buy_count}</TableCell>
+                        <TableCell align="right">{f(buy_count / data.details.length * 100) + '%'}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Sell actions</TableCell>
-                        <TableCell>{sell_count}</TableCell>
-                        <TableCell>{f(sell_count / data.details.length * 100) + '%'}</TableCell>
+                        <TableCell align="right">{sell_count}</TableCell>
+                        <TableCell align="right">{f(sell_count / data.details.length * 100) + '%'}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Active actions</TableCell>
-                        <TableCell>{buy_count + sell_count}</TableCell>
-                        <TableCell>{f((buy_count + sell_count) / data.details.length * 100) + '%'}</TableCell>
+                        <TableCell align="right">{buy_count + sell_count}</TableCell>
+                        <TableCell align="right">{f((buy_count + sell_count) / data.details.length * 100) + '%'}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Total P&amp;L</TableCell>
-                        <TableCell>{f(total_pnl)}</TableCell>
-                        <TableCell></TableCell>
+                        <TableCell align="right">{f(total_pnl)}</TableCell>
+                        <TableCell align="right"></TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

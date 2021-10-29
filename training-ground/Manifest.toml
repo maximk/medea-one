@@ -34,9 +34,9 @@ version = "3.5.0+3"
 
 [[ArrayInterface]]
 deps = ["Compat", "IfElse", "LinearAlgebra", "Requires", "SparseArrays", "Static"]
-git-tree-sha1 = "49fe2b94edd1a54ac4919b33432daefd8e6c0f28"
+git-tree-sha1 = "a8101545d6b15ff1ebc927e877e28b0ab4bc4f16"
 uuid = "4fba245c-0d91-5ea0-9b3e-6abc04ee57a9"
-version = "3.1.35"
+version = "3.1.36"
 
 [[Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
@@ -87,9 +87,9 @@ version = "1.12.1"
 
 [[ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
-git-tree-sha1 = "0541d306de71e267c1a724f84d44bbc981f287b4"
+git-tree-sha1 = "3533f5a691e60601fe60c90d8bc47a27aa2907ec"
 uuid = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
-version = "1.10.2"
+version = "1.11.0"
 
 [[CodeTracking]]
 deps = ["InteractiveUtils", "UUIDs"]
@@ -246,15 +246,15 @@ uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[Distributions]]
 deps = ["ChainRulesCore", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns"]
-git-tree-sha1 = "15dad92b6a36400c988de3fc9490a372599f5b4c"
+git-tree-sha1 = "d249ebaa67716b39f91cf6052daf073634013c0f"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.25.21"
+version = "0.25.23"
 
 [[DocStringExtensions]]
 deps = ["LibGit2"]
-git-tree-sha1 = "a32185f5428d3986f47c2ab78b1f216d5e6cc96f"
+git-tree-sha1 = "b19534d1895d702889b219c382a6e18010797f0b"
 uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
-version = "0.8.5"
+version = "0.8.6"
 
 [[Downloads]]
 deps = ["ArgTools", "LibCURL", "NetworkOptions"]
@@ -312,9 +312,9 @@ version = "0.8.4"
 
 [[Flux]]
 deps = ["AbstractTrees", "Adapt", "ArrayInterface", "CUDA", "CodecZlib", "Colors", "DelimitedFiles", "Functors", "Juno", "LinearAlgebra", "MacroTools", "NNlib", "NNlibCUDA", "Pkg", "Printf", "Random", "Reexport", "SHA", "SparseArrays", "Statistics", "StatsBase", "Test", "ZipFile", "Zygote"]
-git-tree-sha1 = "e4ade0790850bb16b5309945658fa4e7626226f1"
+git-tree-sha1 = "e8b37bb43c01eed0418821d1f9d20eca5ba6ab21"
 uuid = "587475ba-b771-5e3f-ad9e-33799f191a9c"
-version = "0.12.7"
+version = "0.12.8"
 
 [[Formatting]]
 deps = ["Printf"]
@@ -380,9 +380,9 @@ uuid = "bbac6d45-d8f3-5730-bfe4-7a449cd117ca"
 version = "0.3.1"
 
 [[IfElse]]
-git-tree-sha1 = "28e837ff3e7a6c3cdb252ce49fb412c8eb3caeef"
+git-tree-sha1 = "debdd00ffef04665ccbb3e150747a77560e8fad1"
 uuid = "615f187c-cbe4-4ef1-ba3b-2fcf58d6d173"
-version = "0.1.0"
+version = "0.1.1"
 
 [[ImageAxes]]
 deps = ["AxisArrays", "ImageCore", "Reexport", "SimpleTraits"]
@@ -654,9 +654,9 @@ version = "2021.1.1+2"
 
 [[MacroTools]]
 deps = ["Markdown", "Random"]
-git-tree-sha1 = "5a5bc6bf062f0f95e62d0fe0a2d99699fed82dd9"
+git-tree-sha1 = "3d3e902b31198a27340d0bf00d6ac452866021cf"
 uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
-version = "0.5.8"
+version = "0.5.9"
 
 [[MappedArrays]]
 git-tree-sha1 = "e8b359ef06ec72e8c030463fe02efe5527ee5142"
@@ -808,9 +808,9 @@ version = "0.12.3"
 
 [[Parsers]]
 deps = ["Dates"]
-git-tree-sha1 = "f19e978f81eca5fd7620650d7dbea58f825802ee"
+git-tree-sha1 = "d911b6a12ba974dabe2291c6d450094a7226b372"
 uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "2.1.0"
+version = "2.1.1"
 
 [[Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
@@ -978,8 +978,8 @@ deps = ["Distributed", "Mmap", "Random", "Serialization"]
 uuid = "1a1011a3-84de-559e-8e89-a11a2f7dc383"
 
 [[SimpleOne]]
-deps = ["CUDA", "Colors", "DataFrames", "Dates", "Diana", "Distributions", "FileIO", "Flux", "GPUArrays", "HTTP", "HypothesisTests", "ImageIO", "ImageMagick", "Images", "IterTools", "LinearAlgebra", "Logging", "MultivariateStats", "Pandas", "PrettyTables", "Printf", "PyCall", "Query", "Random", "RecipesBase", "Revise", "Statistics", "StatsBase", "Test"]
-git-tree-sha1 = "bcdaabb9264e65307b6deaa5315e01ca7b57b414"
+deps = ["CUDA", "Colors", "Combinatorics", "DataFrames", "DataStructures", "Dates", "Diana", "Distributions", "FileIO", "Flux", "GPUArrays", "HTTP", "HypothesisTests", "ImageIO", "ImageMagick", "Images", "IterTools", "LinearAlgebra", "Logging", "MultivariateStats", "Pandas", "PrettyTables", "Printf", "PyCall", "Query", "Random", "RecipesBase", "Revise", "Statistics", "StatsBase", "Test"]
+git-tree-sha1 = "a63fbec1790ae4ee6e1defe2a3a8147bcb716377"
 repo-rev = "main"
 repo-url = "https://github.com/PurTech/SimpleOne.git"
 uuid = "a5cf4e30-b29b-4472-8449-c25267738de3"
@@ -1006,9 +1006,9 @@ uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
 [[SpecialFunctions]]
 deps = ["ChainRulesCore", "IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
-git-tree-sha1 = "2d57e14cd614083f132b6224874296287bfa3979"
+git-tree-sha1 = "f0bccf98e16759818ffc5d97ac3ebf87eb950150"
 uuid = "276daf66-3868-5448-9aa4-cd146d93841b"
-version = "1.8.0"
+version = "1.8.1"
 
 [[StackViews]]
 deps = ["OffsetArrays"]

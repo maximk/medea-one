@@ -33,7 +33,7 @@ export default function RunPicker({ problem, solver }) {
     })
 
     if (runs === undefined) {
-        return <div />
+        return <div>Loading...</div>
     }
 
     if (runs.length === 0) {

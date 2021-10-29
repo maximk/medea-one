@@ -64,7 +64,7 @@ export default function TrainingSummary({ setAllProblems, setAllSolvers }) {
     const headers = ['Problem', 'Known'].concat(allSolvers)
     return (
         <TableContainer component={Paper}>
-            <Table>
+            <Table sx={{ minWidth: 960 }}>
                 <TableHead>
                     <TableRow>
                         {headers.map((h, i) => <TableCell key={i}>{h}</TableCell>)}
