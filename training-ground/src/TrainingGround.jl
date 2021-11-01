@@ -45,13 +45,24 @@ function train_model(prob_name, solver_name)
 
         return (
             failure = (
-                message = string(e.msg),
+                message = pretty_message(e),
                 problem = prob_name,
                 solver = solver_name,
                 known_solution = known_solution,
                 started = string(started),
             ),
         )
+    end
+end
+
+pretty_message(e::ErrorException) = e.msg
+
+function pretty_message(e::Exception)
+    s = string(e)  # can be very long
+    if length(s) > 80
+        return first(s, 59) * "..." * last(s, 19)
+    else
+        return s
     end
 end
 
