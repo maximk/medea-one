@@ -1,6 +1,6 @@
 {
     "train-model": {
-        "problem": "mattr",
-        "solver": "CS"
+        "problem": "forms-aapl",
+        "solver": "SS"
     }
 }
