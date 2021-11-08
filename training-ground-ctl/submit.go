@@ -18,16 +18,17 @@ const (
 	trainingSinkTopic = "egress--training-ground--training-ground"
 )
 
-type SubmitTasks struct {
-	Solvers     []string `json:"solvers"`
-	SolverList  string   `json:"solverlist"`
-	Problems    []string `json:"problems"`
-	ProblemList string   `json:"problemlist"`
-}
-
-type TrainModel struct {
+type ProblemSolver struct {
 	Problem string `json:"problem"`
 	Solver  string `json:"solver"`
+}
+
+type SubmitTasks struct {
+	Solvers     []string        `json:"solvers"`
+	SolverList  string          `json:"solverlist"`
+	Problems    []string        `json:"problems"`
+	ProblemList string          `json:"problemlist"`
+	Exclude     []ProblemSolver `json:"exclude"`
 }
 
 func submitTasks(ctx context.Context, spec *SubmitTasks) error {
@@ -70,9 +71,21 @@ func submitTasks(ctx context.Context, spec *SubmitTasks) error {
 	count := 0
 	for _, prob := range problems {
 		for _, solver := range solvers {
+			exclude := false
+			for _, x := range spec.Exclude {
+				if x.Problem == prob && x.Solver == solver {
+					exclude = true
+					break
+				}
+			}
+
+			if exclude {
+				continue
+			}
+
 			x := struct {
-				TrainModel TrainModel `json:"train-model"`
-			}{TrainModel{prob, solver}}
+				TrainModel ProblemSolver `json:"train-model"`
+			}{ProblemSolver{prob, solver}}
 
 			payload, err := json.Marshal(&x)
 			if err != nil {
@@ -136,10 +149,3 @@ func resolveProblemList(ctx context.Context, problemList string) ([]string, erro
 
 	return output.Problems, nil
 }
-
-// func submitTasks1(ctx context.Context, problems []string, solvers []string) error {
-// 	//TODO
-// 	//TODO
-// 	//TODO
-// 	return nil
-// }

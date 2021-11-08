@@ -1,30 +1,19 @@
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import Drawer from '@mui/material/Drawer'
-import Divider from '@mui/material/Divider'
-import TableChartIcon from '@mui/icons-material/TableChart'
-import ShowChartIcon from '@mui/icons-material/ShowChart'
+import { Divider, Drawer, Typography } from "@mui/material"
 
-import { useHistory } from 'react-router-dom'
+function Sidebar() {
+    return <Drawer variant='permanent' sx={{ '& .MuiDrawer-paper': { width: 240 } }}>
 
-export default function Sidebar() {
-    const history = useHistory()
-
-    return (
-        <Drawer variant='permanent' anchor='left' sx={{ width: '240px' }}>
-            <List>
-                <ListItem button onClick={() => history.push('/summary')}>
-                    <ListItemIcon><TableChartIcon /></ListItemIcon>
-                    <ListItemText>Summary</ListItemText>
-                </ListItem>
-                <ListItem button onClick={() => history.push('/runs')}>
-                    <ListItemIcon><ShowChartIcon /></ListItemIcon>
-                    <ListItemText>Sample Runs</ListItemText>
-                </ListItem>
-            </List>
-            <Divider />
-        </Drawer>
-    )
+        <Typography variant='h6' sx={{ mb: 2 }}>
+            <img alt="M1" src="/images/logo.svg" style={{
+                width: 32,
+                paddingLeft: 16,
+                paddingRight: 24,
+                paddingTop: 54
+            }} />
+            Training Ground
+        </Typography>
+        <Divider />
+    </Drawer>
 }
+
+export default Sidebar

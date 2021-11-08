@@ -38,6 +38,9 @@ while true
         if haskey(req, "train-model")
             args = req["train-model"]
             TrainingGround.train_model(args["problem"], args["solver"])
+        elseif haskey(req, "train-template-model")
+            args = req["train-template-model"]
+            TrainingGround.train_template_model(args["template"], args["params"], args["solver"])
         elseif haskey(req, "resolve-solver-list")
             args = req["resolve-solver-list"]
             TrainingGround.resolve_solver_list(args)
@@ -45,7 +48,7 @@ while true
             args = req["resolve-problem-list"]
             TrainingGround.resolve_problem_list(args)
         else
-            Dict(:error => "action not supported; use 'train-model', 'resolve-solver-list', or 'resolve-problem-list'")
+            Dict(:error => "action not supported; use 'train-model', 'train-template-model', 'resolve-solver-list', or 'resolve-problem-list'")
         end
     end
 

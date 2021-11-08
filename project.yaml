@@ -5,9 +5,16 @@ regions:
 
 graph:
   training-ground: {a1: training-ground-ctl}
+  training-ground-1: {a1: training-ground-exp}
+
+vertices:
+  training-ground-1:
+    service: training-ground
 
 origins:
   training-ground:
+    schedule: '1 1 1 1 1'
+  training-ground-1:
     schedule: '1 1 1 1 1'
   training-ground-ctl:
     schedule: '15 */6 * * *'
@@ -15,7 +22,22 @@ origins:
       {
           "submit-tasks": {
               "problemlist": "ALL",
-              "solverlist": "ALL"
+              "solverlist": "ALL",
+              "exclude": [
+                { "problem": "vecsum", "solver": "CS" },
+                { "problem": "forms-aapl", "solver": "SS" },
+                { "problem": "forms-aapl", "solver": "LS" },
+                { "problem": "forms-jpm", "solver": "SS" },
+                { "problem": "forms-jpm", "solver": "LS" },
+                { "problem": "forms-msft", "solver": "SS" },
+                { "problem": "forms-msft", "solver": "LS" },
+                { "problem": "time-aapl", "solver": "SS" },
+                { "problem": "time-aapl", "solver": "LS" },
+                { "problem": "time-jpm", "solver": "SS" },
+                { "problem": "time-jpm", "solver": "LS" },
+                { "problem": "time-msft", "solver": "SS" },
+                { "problem": "time-msft", "solver": "LS" }
+              ]
           }
       }
     retry-count: 3
@@ -25,4 +47,5 @@ services:
     memory: 4Gi
     timeout: 900s
   training-ground-ctl:
+  training-ground-exp:
   training-ground-ui:

@@ -8,10 +8,13 @@ import (
 func main() {
 	log.SetFlags(0)
 
-	http.HandleFunc("/1/api/training-summary", trainingSummary)
-	http.HandleFunc("/1/api/sample-runs", sampleRuns)
-	http.Handle("/", http.FileServer(http.Dir("build")))
+	http.HandleFunc("/1/api/training/solvers", solverList)
+	http.HandleFunc("/1/api/training/problems", problemList)
+	http.HandleFunc("/1/api/training/stats", trainingStats)
+	http.HandleFunc("/1/api/training/summary", trainingSummary)
+	http.HandleFunc("/1/api/training/runs", trainingRuns)
 
+	http.Handle("/", http.FileServer(http.Dir("build")))
 	http.ListenAndServe(":8080", logRequest(http.DefaultServeMux))
 }
 

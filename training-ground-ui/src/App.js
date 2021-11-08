@@ -1,46 +1,80 @@
-import { useState } from 'react'
-
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import TrainingSummary from './components/TrainingSummary'
+import Dashboard from './components/Dashboard'
+import RegularSummary from './components/RegularSummary'
 import SampleRuns from './components/SampleRuns'
-import Sidebar from './components/Sidebar'
+import ExperimentalSummary from './components/ExperimentalSummary'
+import { useEffect, useState } from 'react'
+
+import memoize from './cache'
+import config from './config'
 
 function App() {
-    const [allProblems, setAllProblems] = useState(['next', 'next-F', 'fizzbuzz'])
-    const [allSolvers, setAllSolvers] = useState(['SS', 'FF', 'LS'])
+    const [allSolvers, setAllSolvers] = useState(undefined)
+
+    useEffect(() => {
+        const fetchSolvers = async () => {
+            try {
+                let url = config.apiUrl + 'training/solvers'
+                if (memoize(url) === undefined) {
+                    const response = await fetch(url)
+                    const solvers = await response.json()
+                    memoize(url, solvers)
+                    setAllSolvers(solvers)
+                } else {
+                    setAllSolvers(memoize(url))
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+        fetchSolvers()
+    }, [])
+
+    const [allProblems, setAllProblems] = useState(undefined)
+
+    useEffect(() => {
+        const fetchProblems = async () => {
+            try {
+                let url = config.apiUrl + 'training/problems'
+                if (memoize(url) === undefined) {
+                    const response = await fetch(url)
+                    const problems = await response.json()
+                    memoize(url, problems)
+                    setAllProblems(problems)
+                } else {
+                    setAllProblems(memoize(url))
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+        fetchProblems()
+    }, [])
 
     return (
         <Router>
-            <Box sx={{ display: 'flex' }}>
-                <Sidebar />
-                <Box component='main'>
-
-                    {/*TODO add a dashboard here (total number of records in training tables, etc) */}
-
-                    <Switch>
-                        <Route path='/summary'>
-                            <Typography variant="h3" marginTop={4} marginBottom={2}>Training Summary</Typography>
-                            <TrainingSummary
-                                setAllProblems={setAllProblems}
-                                setAllSolvers={setAllSolvers}
-                            />
-                        </Route>
-                        <Route path='/runs'>
-                            <Typography variant="h3" marginTop={4} marginBottom={2}>Sample Runs</Typography>
-                            <SampleRuns
-                                allProblems={allProblems}
-                                allSolvers={allSolvers}
-                            />
-                        </Route>
-                    </Switch>
-                </Box>
-            </Box>
+            <Switch>
+                <Route path="/dashboard">
+                    <Dashboard solvers={allSolvers} problems={allProblems} />
+                </Route>
+                <Route path="/regular/summary">
+                    <RegularSummary solvers={allSolvers} />
+                </Route>
+                <Route path="/regular/runs">
+                    <SampleRuns solvers={allSolvers} problems={allProblems} />
+                </Route>
+                <Route path="/experimental/summary">
+                    <ExperimentalSummary />
+                </Route>
+                <Route path="/">
+                    <Dashboard solvers={allSolvers} problems={allProblems} />
+                </Route>
+            </Switch>
         </Router>
-    )
+    );
 }
 
 export default App

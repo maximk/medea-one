@@ -4,15 +4,32 @@ using TimeZones
 
 using SimpleOne.Solvers:allsolvers
 using SimpleOne:problem
+using SimpleOne:problem_template
 using SimpleOne:allproblems
 using SimpleOne:profess
 using SimpleOne:train
 using SimpleOne.Problems:solvable
 
 function train_model(prob_name, solver_name)
-
-    solver = allsolvers[solver_name]
     prob = problem(prob_name)
+
+    return _train_model(prob, solver_name)
+end
+
+# JSON objects to keyword arguments
+fix_params(params) = params
+fix_params(params::Dict{String,Any}) = Dict(Symbol(k) => v for (k, v) = params)
+
+function train_template_model(template, params, solver_name)
+    t = problem_template(template)
+    params = fix_params(params)
+    prob = t(; params...)
+
+    return _train_model(prob, solver_name)
+end
+
+function _train_model(prob, solver_name)
+    solver = allsolvers[solver_name]
 
     known_solution = nothing
     if solvable(prob)
@@ -29,7 +46,7 @@ function train_model(prob_name, solver_name)
 
         return (
             success = (
-                problem = prob_name,
+                problem = prob.name,
                 solver = solver_name,
                 known_solution = known_solution,
                 started = string(started),
@@ -46,7 +63,7 @@ function train_model(prob_name, solver_name)
         return (
             failure = (
                 message = pretty_message(e),
-                problem = prob_name,
+                problem = prob.name,
                 solver = solver_name,
                 known_solution = known_solution,
                 started = string(started),

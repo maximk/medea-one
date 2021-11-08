@@ -1,6 +1,4 @@
-import styles from '../App.module.css'
-
-export default function KnownResult(props) {
+function KnownResult(props) {
     const ok = props.solved > 0 && props.unsolved === 0
     const unstable = props.solved > 0 && props.unsolved > 0
     const unknown = props.solved === 0 && props.unsolved === 0
@@ -13,9 +11,11 @@ export default function KnownResult(props) {
     if (unknown)
         s = 'unknown'
 
-    var cs = []
-    if (unstable)
-        cs.push(styles.unstable)
+    // var cs = []
+    // if (unstable)
+    //     cs.push(styles.unstable)
 
-    return <div className={cs.join(' ')}>{s}</div>
+    return <div>{s}</div>
 }
+
+export default KnownResult

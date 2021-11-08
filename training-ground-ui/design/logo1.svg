@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="96.498985"
+   height="96.499161"
+   viewBox="0 0 25.532022 25.53207"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
@@ -25,24 +25,30 @@
      showgrid="false"
      showborder="false"
      inkscape:zoom="1"
-     inkscape:cx="34"
-     inkscape:cy="512"
+     inkscape:cx="-35"
+     inkscape:cy="108"
      inkscape:window-width="1916"
      inkscape:window-height="1041"
      inkscape:window-x="0"
      inkscape:window-y="37"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="px" />
   <defs
      id="defs2" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-6.2012138,-106.9029)">
     <path
        id="path4046"
        style="fill:#ef9a9a;stroke:none;stroke-width:0.264584px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m -45.49927,50.843912 c 0.704849,-4.8e-5 1.535468,0.31099 2.480416,1.066939 l 84.340938,75.687859 -43.3811903,-0.29629 v 59.00816 H -44.915525 c -1.484892,-0.008 -3.356309,-1.26029 -3.361412,-3.95947 l 0.02989,-127.647933 c -0.03343,-1.82747 0.946504,-3.859137 2.747782,-3.859265 z"
+       d="m 6.7247338,106.9029 c 0.132846,0 0.289396,0.0586 0.467495,0.2011 l 15.8961222,14.26523 -8.176251,-0.0558 v 11.12154 H 6.8347548 c -0.279865,-0.002 -0.632579,-0.23754 -0.633541,-0.74626 l 0.0056,-24.05839 c -0.0063,-0.34443 0.178391,-0.72735 0.517887,-0.72738 z"
        sodipodi:nodetypes="scccccccs"
        inkscape:export-filename="/home/mk/pt/medea-one/training-ground-ui/public/logo512.png"
        inkscape:export-xdpi="96"
@@ -50,7 +56,7 @@
     <path
        id="path857"
        style="fill:#d50000;stroke:none;stroke-width:0.264584px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 84.412068,50.843912 c -0.704848,-4.8e-5 -1.535472,0.31099 -2.480421,1.066939 L -2.4092876,127.59871 40.971902,127.30242 v 59.00816 h 42.856419 c 1.484894,-0.008 3.35631,-1.26029 3.361408,-3.95947 L 87.159863,54.703177 c 0.03344,-1.82747 -0.946499,-3.859137 -2.747782,-3.859265 z"
+       d="m 31.209717,106.9029 c -0.132846,0 -0.289397,0.0586 -0.467496,0.2011 l -15.896121,14.26523 8.176251,-0.0558 v 11.12154 h 8.077345 c 0.279865,-0.002 0.632579,-0.23754 0.63354,-0.74626 l -0.0056,-24.05839 c 0.0063,-0.34443 -0.178391,-0.72735 -0.517887,-0.72738 z"
        sodipodi:nodetypes="scccccccs"
        inkscape:export-filename="/home/mk/pt/medea-one/training-ground-ui/public/logo512.png"
        inkscape:export-xdpi="96"

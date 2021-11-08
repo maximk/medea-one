@@ -15,7 +15,7 @@ export default function RunPicker({ problem, solver }) {
     useEffect(() => {
         const fetchRuns = async () => {
             try {
-                let url = config.apiUrl + 'sample-runs?problem=' + problem + '&solver=' + solver
+                let url = config.apiUrl + 'training/runs?problem=' + problem + '&solver=' + solver
                 if (memoize(url) === undefined) {
                     const response = await fetch(url)
                     const runs = await response.json()
