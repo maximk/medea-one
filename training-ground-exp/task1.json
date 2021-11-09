@@ -1,0 +1,52 @@
+{
+    "submit-tasks": {
+        "solvers": [
+            "FF",
+            "SS"
+        ],
+        "templates": [
+            {
+                "template": "eod",
+                "params": [
+                    {
+                        "symbol": "TSLA"
+                    },
+                    {
+                        "symbol": "ABNB"
+                    },
+                    {
+                        "symbol": "PTON"
+                    }
+                ]
+            },
+            {
+                "template": "forms",
+                "params": [
+                    {
+                        "symbol": "TSLA"
+                    },
+                    {
+                        "symbol": "ABNB"
+                    },
+                    {
+                        "symbol": "PTON"
+                    }
+                ]
+            },
+            {
+                "template": "time",
+                "params": [
+                    {
+                        "symbol": "TSLA"
+                    },
+                    {
+                        "symbol": "ABNB"
+                    },
+                    {
+                        "symbol": "PTON"
+                    }
+                ]
+            }
+        ]
+    }
+}

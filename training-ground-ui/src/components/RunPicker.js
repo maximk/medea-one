@@ -8,14 +8,14 @@ import SampleRun from './SampleRun'
 import memoize from '../cache'
 import config from '../config'
 
-export default function RunPicker({ problem, solver }) {
+export default function RunPicker({ slug, problem, solver }) {
     const [runs, setRuns] = useState()
     const [selectedRun, setSelectedRun] = useState('1')
 
     useEffect(() => {
         const fetchRuns = async () => {
             try {
-                let url = config.apiUrl + 'training/runs?problem=' + problem + '&solver=' + solver
+                let url = config.apiUrl + slug + '/runs?problem=' + problem + '&solver=' + solver
                 if (memoize(url) === undefined) {
                     const response = await fetch(url)
                     const runs = await response.json()

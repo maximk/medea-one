@@ -1,0 +1,9 @@
+{
+    "train-template-model": {
+        "template": "eod",
+        "params": {
+            "symbol": "EEX"
+        },
+        "solver": "SS"
+    }
+}

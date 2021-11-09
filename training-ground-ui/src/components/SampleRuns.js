@@ -42,7 +42,7 @@ export default function SampleRuns({ problems, solvers }) {
                     </TextField>
                 </Box>
                 {(problem !== '' && solver !== '')
-                    ? <RunPicker problem={problem} solver={solver} />
+                    ? <RunPicker slug='training' problem={problem} solver={solver} />
                     : <div />
                 }
             </Box>

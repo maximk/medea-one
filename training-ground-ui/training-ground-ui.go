@@ -14,6 +14,10 @@ func main() {
 	http.HandleFunc("/1/api/training/summary", trainingSummary)
 	http.HandleFunc("/1/api/training/runs", trainingRuns)
 
+	http.HandleFunc("/1/api/experimental/stats", experimentalStats)
+	http.HandleFunc("/1/api/experimental/summary", experimentalSummary)
+	http.HandleFunc("/1/api/experimental/runs", experimentalRuns)
+
 	http.Handle("/", http.FileServer(http.Dir("build")))
 	http.ListenAndServe(":8080", logRequest(http.DefaultServeMux))
 }

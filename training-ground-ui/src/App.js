@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 
 import memoize from './cache'
 import config from './config'
+import ExperimentalRuns from './components/ExperimentalRuns'
 
 function App() {
     const [allSolvers, setAllSolvers] = useState(undefined)
@@ -68,6 +69,9 @@ function App() {
                 </Route>
                 <Route path="/experimental/summary">
                     <ExperimentalSummary />
+                </Route>
+                <Route path="/experimental/runs">
+                    <ExperimentalRuns />
                 </Route>
                 <Route path="/">
                     <Dashboard solvers={allSolvers} problems={allProblems} />

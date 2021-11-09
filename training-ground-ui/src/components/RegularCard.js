@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 function humanize(x) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
+
 function RegularCard({ problems, solvers }) {
     const history = useHistory()
 
@@ -44,7 +45,7 @@ function RegularCard({ problems, solvers }) {
                 </TableRow>
                 <TableRow>
                     <TableCell align="right">{problems ? problems.length : '-'}</TableCell>
-                    <TableCell>solvers</TableCell>
+                    <TableCell>problems</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell align="right">{solvers ? solvers.length : '-'}</TableCell>
