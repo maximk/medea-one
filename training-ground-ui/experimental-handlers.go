@@ -16,11 +16,18 @@ type ExpStats struct {
 	SolutionsFound  int `json:"solutions_found"`
 }
 
-type ExpSummary struct {
+type ExpSolution struct {
 	Problem         string `json:"problem"`
 	Solver          string `json:"solver"`
 	TrainTimeMillis int    `json:"train_time_ms"`
 	TotalPrices     int    `json:"total_prices"`
+}
+
+type ExpSummary struct {
+	Template        string `json:"template"`
+	Solver          string `json:"solver"`
+	SolutionsFound  int    `json:"solutions_found"`
+	ReportsReceived int    `json:"reports_received"`
 }
 
 func experimentalStats(w http.ResponseWriter, r *http.Request) {
@@ -50,9 +57,9 @@ func experimentalStats(w http.ResponseWriter, r *http.Request) {
 	w.Write(payload)
 }
 
-func experimentalSummary(w http.ResponseWriter, r *http.Request) {
+func experimentalSolutions(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
-	q := bq.Connect(ctx).Query("call M1.GetExperimentalSummary()")
+	q := bq.Connect(ctx).Query("call M1.GetExperimentalSolutions()")
 
 	it, err := q.Read(ctx)
 	if err != nil {
@@ -60,9 +67,9 @@ func experimentalSummary(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	xs := []ExpSummary{}
+	xs := []ExpSolution{}
 	for {
-		var x ExpSummary
+		var x ExpSolution
 		err := it.Next(&x)
 		if err == iterator.Done {
 			break
@@ -128,6 +135,44 @@ func experimentalRuns(w http.ResponseWriter, r *http.Request) {
 			} else {
 				x.Details[i].Signal2 = nil
 			}
+		}
+
+		if err != nil {
+			writeError(w, err)
+			return
+		}
+
+		xs = append(xs, x)
+	}
+
+	payload, err := json.Marshal(xs)
+	if err != nil {
+		panic(err)
+	}
+
+	addCorsHeaders(w)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(payload)
+}
+
+func experimentalSummary(w http.ResponseWriter, r *http.Request) {
+	ctx := context.Background()
+	q := bq.Connect(ctx).Query("call M1.GetExperimentalSummary()")
+
+	it, err := q.Read(ctx)
+	if err != nil {
+		writeError(w, err)
+		return
+	}
+
+	//
+
+	xs := []ExpSummary{}
+	for {
+		var x ExpSummary
+		err := it.Next(&x)
+		if err == iterator.Done {
+			break
 		}
 
 		if err != nil {

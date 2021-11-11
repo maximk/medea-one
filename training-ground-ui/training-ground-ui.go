@@ -16,6 +16,7 @@ func main() {
 
 	http.HandleFunc("/1/api/experimental/stats", experimentalStats)
 	http.HandleFunc("/1/api/experimental/summary", experimentalSummary)
+	http.HandleFunc("/1/api/experimental/solutions", experimentalSolutions)
 	http.HandleFunc("/1/api/experimental/runs", experimentalRuns)
 
 	http.Handle("/", http.FileServer(http.Dir("build")))

@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Dashboard from './components/Dashboard'
 import RegularSummary from './components/RegularSummary'
 import SampleRuns from './components/SampleRuns'
+import ExperimentalSolutions from './components/ExperimentalSolutions'
 import ExperimentalSummary from './components/ExperimentalSummary'
+
 import { useEffect, useState } from 'react'
 
 import memoize from './cache'
@@ -69,6 +71,9 @@ function App() {
                 </Route>
                 <Route path="/experimental/summary">
                     <ExperimentalSummary />
+                </Route>
+                <Route path="/experimental/solutions">
+                    <ExperimentalSolutions />
                 </Route>
                 <Route path="/experimental/runs">
                     <ExperimentalRuns />

@@ -32,6 +32,7 @@ RUN npm install react-scripts --silent
 COPY src ./src/
 COPY src/components ./src/components/
 COPY public ./public/
+COPY public/images ./public/images/
 RUN npm run build
 
 #--------------------------------------------------------------------------------

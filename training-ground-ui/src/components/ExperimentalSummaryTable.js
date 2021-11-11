@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import memoize from '../cache'
 import config from '../config'
 
-function ExperimentalTrainingTable() {
+function ExperimentalSummaryTable() {
     const [summary, setSummary] = useState()
 
     useEffect(() => {
         const fetchSummary = async () => {
             try {
-                let url = config.apiUrl + 'experimental/solutions'
+                let url = config.apiUrl + 'experimental/summary'
                 if (memoize(url) === undefined) {
                     const response = await fetch(url)
                     const summary = await response.json()
@@ -32,27 +32,23 @@ function ExperimentalTrainingTable() {
         return <div>Loading...</div>
     }
 
-    return <TableContainer sx={{ width: 720 }}>
+    return <TableContainer sx={{ width: 640 }}>
         <Table>
             <TableHead>
                 <TableRow>
-                    <TableCell>Problem</TableCell>
+                    <TableCell>Template</TableCell>
                     <TableCell>Solver</TableCell>
-                    <TableCell align='right'>Training time, ms</TableCell>
-                    <TableCell align='right'>Prices observed</TableCell>
+                    <TableCell align='right'>Solutions found</TableCell>
+                    <TableCell align='right'>Reports received</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
                 {summary.map((x, i) =>
                     <TableRow key={i}>
-                        <TableCell>
-                            <Link to={'/experimental/runs?problem=' + x.problem + '&solver=' + x.solver}>
-                                {x.problem}
-                            </Link>
-                        </TableCell>
+                        <TableCell>{x.template}</TableCell>
                         <TableCell>{x.solver}</TableCell>
-                        <TableCell align='right'>{x.train_time_ms}</TableCell>
-                        <TableCell align='right'>{x.total_prices}</TableCell>
+                        <TableCell align='right'>{x.solutions_found}</TableCell>
+                        <TableCell align='right'>{x.reports_received}</TableCell>
                     </TableRow>
                 )}
             </TableBody>
@@ -60,4 +56,4 @@ function ExperimentalTrainingTable() {
     </TableContainer>
 }
 
-export default ExperimentalTrainingTable
+export default ExperimentalSummaryTable
